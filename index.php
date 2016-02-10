@@ -50,7 +50,10 @@ $db = new accounts();
                 $array_accounts = $db->show_accounts();
                 foreach ($array_accounts as $data) {
                     ?>
-                    <a class="waves-effect waves-light btn"><i class="material-icons right">cloud</i><?php echo $data['ac_name'] ?></a>
+                    <a class="waves-effect waves-light btn">
+                    <i class="material-icons right">cloud</i><?php echo $data['ac_name'] ?>
+                    <span class='<?php // echo  $color - cur ?>'>
+                    <?php echo $data['ac_opening_balance'] ?> </span></a>
 
                     <?php
                 }
@@ -75,8 +78,7 @@ $db = new accounts();
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="js/materialize.js"></script>
         <script src="js/init.js"></script>
-<?php
-
-?>
+        <?php
+        ?>
     </body>
 </html>

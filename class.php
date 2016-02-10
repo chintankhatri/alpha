@@ -16,12 +16,11 @@ class database {
     private $host = 'localhost';
     private $dbname = 'pha';
     public $db;
-   
 
     /**
      * 
      * @author chintan khatri <chintan.khatri@hotmail.com>
-     * 
+     * function connection with mysql
      */
     public function __construct() {
         $options = array(
@@ -29,13 +28,14 @@ class database {
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
         );
         $this->db = new PDO('mysql:host=' . $this->host . ';dbname=' . $this->dbname . '', $this->username, $this->password, $options);
-        // return $this->db;
     }
-
-
 
 }
 
+/**
+ * @author chintan khatri <chintan.khatri@hotmail.com>
+ * extended class of database perform functions on accounts
+ */
 class accounts extends database {
 
     public function show_accounts() {
