@@ -20,9 +20,9 @@ $db->connect();
         <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     </head>
     <body>
-     <?php
-     include_once './theme-part/top_nav.php';
-     ?>
+        <?php
+        include_once './theme-part/top_nav.php';
+        ?>
 
 
         <div class="container">
@@ -35,7 +35,7 @@ $db->connect();
                 <div class="col s12 m4">
                     <div class="card-panel teal">
                         <span class="white-text">
-                        
+
                         </span>
                     </div>
                 </div>
@@ -46,7 +46,7 @@ $db->connect();
 
             <div class="row">
 
-      
+
             </div>
             <br>
         </div>

@@ -7,17 +7,15 @@ project:alpha
 
 class database {
 
-    private $host = 'localhost';
-    private $user = 'root';
+    private $username = 'root';
     private $password = '';
-    private $database = 'alpha';
-
+    private $host = 'localhost';
+    private $dbname = 'pha';
+    
     public function connect() {
-
-        mysql_connect($this->host, $this->user, $this->password) or die(mysql_error());
-        mysql_select_db($this->database) or die(mysql_error());
+        $db = new PDO('mysql:host='.$this->host.';dbname='.$this->dbname.'', $this->username, $this->password);
+        return $db;
     }
-
+    
 }
-
 ?>
