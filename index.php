@@ -5,8 +5,7 @@ Date : 01-10-2016
 <!DOCTYPE html>
 <?php
 include_once './class.php';
-$db = new database();
-$db->connect();
+$db = new accounts();
 ?>
 <html lang="en">
     <head>
@@ -32,10 +31,12 @@ $db->connect();
                 <div class="col s12 m4">
                     <br>
                 </div>
+
                 <div class="col s12 m4">
                     <div class="card-panel teal">
                         <span class="white-text">
-
+                            <?php
+                            ?>
                         </span>
                     </div>
                 </div>
@@ -45,7 +46,15 @@ $db->connect();
             </div>
 
             <div class="row">
+                <?php
+                $array_accounts = $db->show_accounts();
+                foreach ($array_accounts as $data) {
+                    ?>
+                    <a class="waves-effect waves-light btn"><i class="material-icons right">cloud</i><?php echo $data['ac_name'] ?></a>
 
+                    <?php
+                }
+                ?>
 
             </div>
             <br>
