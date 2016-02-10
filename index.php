@@ -76,7 +76,7 @@ $db = new accounts();
         <script src="js/materialize.js"></script>
         <script src="js/init.js"></script>
 <?php
-$db->disconnect();
+
 ?>
     </body>
 </html>

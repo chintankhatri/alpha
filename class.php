@@ -32,13 +32,7 @@ class database {
         // return $this->db;
     }
 
-    /**
-     * function close the database connection with mysql
-     */
-    public function disconnect() {
 
-        mysql_close();
-    }
 
 }
 
