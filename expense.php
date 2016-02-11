@@ -6,6 +6,7 @@ Date : 01-10-2016
 <?php
 include_once './class.php';
 $db = new accounts();
+$expense_category = new expense();
 if ($_POST) {
     $insert_record = new income();
     $insert_record->new_income($_POST['in_date'], $_POST['in_des'], $_POST['in_amount'], $_POST['in_ac_id']);
@@ -45,13 +46,13 @@ if ($_POST) {
                             <label for="textarea1">Description</label>
                         </div>
                         <div class="input-field col s12">
-                            <select name="in_ac_id">
-                                <option value="" disabled selected>Choose Account</option>
+                            <select name="exp_cat_id">
+                                <option value="" disabled selected>Choose Category</option>
                                 <?php
-                                $array_accounts = $db->show_accounts();
-                                foreach ($array_accounts as $data) {
+                                $array_expense_category = $expense_category->show_expense_category();
+                                foreach ($array_expense_category as $data) {
                                     ?>
-                                    <option value="<?php echo $data['ac_id'] ?>"><?php echo $data['ac_name'] ?></option>
+                                    <option value="<?php echo $data['exp_cat_id'] ?>"><?php echo $data['exp_cat_name'] ?></option>
                                     <?php
                                 }
                                 ?>
