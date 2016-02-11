@@ -34,7 +34,7 @@ class database {
 
 /**
  * @author chintan khatri <chintan.khatri@hotmail.com>
- * extended class of database perform functions on accounts
+ * extended class of database perform functions on accounts 
  */
 class accounts extends database {
 
@@ -43,6 +43,16 @@ class accounts extends database {
         $query->execute();
         $row = $query->fetchAll();
         return $row;
+    }
+
+}
+
+class income extends database {
+
+    public function new_income($in_date,$in_description,$in_amount,$ac_id) {
+        $query = $this->db->prepare("insert into income (`in_date`, `in_description`, `in_amount`, `ac_id`) values ('{$in_date}','{$in_description}','{$in_amount}','{$ac_id}')");
+        $query->execute();
+        
     }
 
 }

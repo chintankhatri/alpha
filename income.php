@@ -6,6 +6,10 @@ Date : 01-10-2016
 <?php
 include_once './class.php';
 $db = new accounts();
+if ($_POST) {
+    $insert_record = new income();
+    $insert_record->new_income($_POST['in_date'], $_POST['in_des'], $_POST['in_amount'], $_POST['in_ac_id']);
+}
 ?>
 <html lang="en">
     <head>
@@ -32,7 +36,7 @@ $db = new accounts();
                             <label for="date">Date</label>
                         </div>
                         <div class="input-field col s12">
-                            <input id="amount" name="in_amnt" type="text" >
+                            <input id="amount" name="in_amount" type="text" >
                             <label for="amount">amount</label>
                         </div>
                         <div class="input-field col s12">
@@ -40,13 +44,13 @@ $db = new accounts();
                             <label for="textarea1">Description</label>
                         </div>
                         <div class="input-field col s12">
-                            <select name="in_ac_type">
+                            <select name="in_ac_id">
                                 <option value="" disabled selected>Choose Account</option>
                                 <?php
                                 $array_accounts = $db->show_accounts();
                                 foreach ($array_accounts as $data) {
                                     ?>
-                                    <option><?php echo $data['ac_name'] ?></option>
+                                    <option value="<?php echo $data['ac_id'] ?>"><?php echo $data['ac_name'] ?></option>
                                     <?php
                                 }
                                 ?>
