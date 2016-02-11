@@ -45,7 +45,7 @@ class accounts extends database {
         return $row;
     }
 
-    public function debit_account($debit_amount,$ac_id) {
+    public function debit_account($debit_amount, $ac_id) {
         $query = $this->db->prepare("update accounts set `ac_opening_balance` = `ac_opening_balance` + $debit_amount where `ac_id` ='{$ac_id}'");
         $query->execute();
     }
@@ -57,6 +57,22 @@ class income extends database {
     public function new_income($in_date, $in_description, $in_amount, $ac_id) {
         $query = $this->db->prepare("insert into income (`in_date`, `in_description`, `in_amount`, `ac_id`) values ('{$in_date}','{$in_description}','{$in_amount}','{$ac_id}')");
         $query->execute();
+    }
+
+}
+
+class expense extends database {
+
+    public function new_expense($ex_date, $ex_description, $ex_amount, $ex_cat_id, $ac_id) {
+        $query = $this->db->prepare("insert into expense (`ex_date`, `ex_description`, `ex_amount`, `ex_cat_id`,`ac_id`) values ('{$ex_date}','{$ex_description}','{$ex_amount}','{$ex_cat_id}','{$ac_id}')");
+        $query->execute();
+    }
+
+    public function show_expense_category() {
+        $query = $this->db->prepare('select * from expense_category');
+        $query->execute();
+        $row = $query->fetchAll();
+        return $row;
     }
 
 }
