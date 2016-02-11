@@ -6,11 +6,11 @@ Date : 01-10-2016
 <?php
 include_once './class.php';
 $db = new accounts();
-$expense_category = new expense();
+$expense_records = new expense();
 if ($_POST) {
-    $insert_record = new income();
-    $insert_record->new_income($_POST['in_date'], $_POST['in_des'], $_POST['in_amount'], $_POST['in_ac_id']);
-    $db->debit_account($_POST['in_amount'], $_POST['in_ac_id']);
+   
+    $expense_records->new_expense($_POST['ex_date'], $_POST['ex_des'], $_POST['ex_amount'],$_POST['ex_cat_id'], $_POST['ex_ac_id']);
+    $db->credit_account($_POST['ex_amount'], $_POST['ex_ac_id']);
 }
 ?>
 <html lang="en">
@@ -34,22 +34,22 @@ if ($_POST) {
                 <form class="col s12" method="POST">
                     <div class="row">
                         <div class="input-field col s12">
-                            <input type="date" name="in_date" class="datepicker">
+                            <input type="date" name="ex_date" class="datepicker">
                             <label for="date">Date</label>
                         </div>
                         <div class="input-field col s12">
-                            <input id="amount" name="in_amount" type="text" >
+                            <input id="amount" name="ex_amount" type="text" >
                             <label for="amount">amount</label>
                         </div>
                         <div class="input-field col s12">
-                            <textarea id="textarea1" name="in_des" class="materialize-textarea"></textarea>
+                            <textarea id="textarea1" name="ex_des" class="materialize-textarea"></textarea>
                             <label for="textarea1">Description</label>
                         </div>
                         <div class="input-field col s12">
-                            <select name="exp_cat_id">
+                            <select name="ex_cat_id">
                                 <option value="" disabled selected>Choose Category</option>
                                 <?php
-                                $array_expense_category = $expense_category->show_expense_category();
+                                $array_expense_category = $expense_records->show_expense_category();
                                 foreach ($array_expense_category as $data) {
                                     ?>
                                     <option value="<?php echo $data['exp_cat_id'] ?>"><?php echo $data['exp_cat_name'] ?></option>
@@ -61,7 +61,7 @@ if ($_POST) {
 
                         </div>
                         <div class="input-field col s12">
-                            <select name="in_ac_id">
+                            <select name="ex_ac_id">
                                 <option value="" disabled selected>Choose Account</option>
                                 <?php
                                 $array_accounts = $db->show_accounts();

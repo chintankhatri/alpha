@@ -50,29 +50,33 @@ class accounts extends database {
         $query->execute();
     }
 
-}
-
-class income extends database {
-
-    public function new_income($in_date, $in_description, $in_amount, $ac_id) {
-        $query = $this->db->prepare("insert into income (`in_date`, `in_description`, `in_amount`, `ac_id`) values ('{$in_date}','{$in_description}','{$in_amount}','{$ac_id}')");
+    public function credit_account($credit_amount, $ac_id) {
+        $query = $this->db->prepare("update accounts set `ac_opening_balance` = `ac_opening_balance` - $credit_amount where `ac_id` ='{$ac_id}'");
         $query->execute();
     }
-
 }
+    class income extends database {
 
-class expense extends database {
+        public function new_income($in_date, $in_description, $in_amount, $ac_id) {
+            $query = $this->db->prepare("insert into income (`in_date`, `in_description`, `in_amount`, `ac_id`) values ('{$in_date}','{$in_description}','{$in_amount}','{$ac_id}')");
+            $query->execute();
+        }
 
-    public function new_expense($ex_date, $ex_description, $ex_amount, $ex_cat_id, $ac_id) {
-        $query = $this->db->prepare("insert into expense (`ex_date`, `ex_description`, `ex_amount`, `ex_cat_id`,`ac_id`) values ('{$ex_date}','{$ex_description}','{$ex_amount}','{$ex_cat_id}','{$ac_id}')");
-        $query->execute();
     }
 
-    public function show_expense_category() {
-        $query = $this->db->prepare('select * from expense_category');
-        $query->execute();
-        $row = $query->fetchAll();
-        return $row;
-    }
+    class expense extends database {
 
-}
+        public function new_expense($ex_date, $ex_description, $ex_amount, $ex_cat_id, $ac_id) {
+            $query = $this->db->prepare("insert into expense (`ex_date`, `ex_description`, `ex_amount`, `ex_cat_id`,`ac_id`) values ('{$ex_date}','{$ex_description}','{$ex_amount}','{$ex_cat_id}','{$ac_id}')");
+            $query->execute();
+        }
+
+        public function show_expense_category() {
+            $query = $this->db->prepare('select * from expense_category');
+            $query->execute();
+            $row = $query->fetchAll();
+            return $row;
+        }
+
+    }
+    
