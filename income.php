@@ -9,6 +9,7 @@ $db = new accounts();
 if ($_POST) {
     $insert_record = new income();
     $insert_record->new_income($_POST['in_date'], $_POST['in_des'], $_POST['in_amount'], $_POST['in_ac_id']);
+    $db->debit_account($_POST['in_amount'], $_POST['in_ac_id']);
 }
 ?>
 <html lang="en">
