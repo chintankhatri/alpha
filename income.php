@@ -4,6 +4,8 @@ Date : 01-10-2016
 -->
 <!DOCTYPE html>
 <?php
+include_once './class.php';
+$db = new accounts();
 ?>
 <html lang="en">
     <head>
@@ -17,9 +19,9 @@ Date : 01-10-2016
         <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     </head>
     <body>
-<?php
-include_once './theme-part/top_nav.php';
-?>
+        <?php
+        include_once './theme-part/top_nav.php';
+        ?>
 
         <div class="container">
             <div class="row">
@@ -40,8 +42,15 @@ include_once './theme-part/top_nav.php';
                         <div class="input-field col s12">
                             <select name="in_ac_type">
                                 <option value="" disabled selected>Choose Account</option>
-
+                                <?php
+                                $array_accounts = $db->show_accounts();
+                                foreach ($array_accounts as $data) {
+                                    ?>
+                                    <option><?php echo $data['ac_name'] ?></option>
+                                    <?php
+                                }
                                 ?>
+
                             </select>
 
                         </div>
