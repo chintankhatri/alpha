@@ -46,7 +46,7 @@ class accounts extends database {
     }
 
     public function debit_account($debit_amount,$ac_id) {
-        $query = $this->db->prepare("update accounts set `ac_opening_balance` = `ac_opening_balance` + '.$debit_amount.' where `ac_id` ='{$ac_id}'");
+        $query = $this->db->prepare("update accounts set `ac_opening_balance` = `ac_opening_balance` + $debit_amount where `ac_id` ='{$ac_id}'");
         $query->execute();
     }
 
