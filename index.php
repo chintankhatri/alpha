@@ -36,6 +36,7 @@ $db = new accounts();
                     <div class="card-panel teal">
                         <span class="white-text">
                             <?php
+                            echo $db->get_overall_balance();
                             ?>
                         </span>
                     </div>
