@@ -88,3 +88,12 @@ class expense extends database {
     }
 
 }
+
+class tranfer extends database {
+
+    public function new_transfer($ac_tr_date, $ac_tr_amount, $ac_tr_desciption, $ac_id_from, $ac_id_to) {
+        $query = $this->db->prepare("insert into account_transfer (`ac_tr_date`, `ac_tr_amount`, `ac_tr_description`, `ac_id_from`, `ac_id_to`) values ('{$ac_tr_date}','{$ac_tr_amount}','{$ac_tr_desciption}','{$ac_id_from}','{$ac_id_to}')");
+        $query->execute();
+    }
+
+}
