@@ -46,7 +46,7 @@ $db = new accounts();
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row" id="main-part">
                 <?php
                 $array_accounts = $db->show_accounts();
                 foreach ($array_accounts as $data) {

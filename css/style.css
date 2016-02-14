@@ -28,3 +28,6 @@
 .white-text{
     font-size: 150%;
 }
+.staggered-test{
+  //  backface-visibility: hidden;
+}

@@ -8,8 +8,8 @@ include_once './class.php';
 $db = new accounts();
 $expense_records = new expense();
 if ($_POST) {
-   
-    $expense_records->new_expense($_POST['ex_date'], $_POST['ex_des'], $_POST['ex_amount'],$_POST['ex_cat_id'], $_POST['ex_ac_id']);
+
+    $expense_records->new_expense($_POST['ex_date'], $_POST['ex_des'], $_POST['ex_amount'], $_POST['ex_cat_id'], $_POST['ex_ac_id']);
     $db->credit_account($_POST['ex_amount'], $_POST['ex_ac_id']);
 }
 ?>

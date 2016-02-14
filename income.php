@@ -23,14 +23,15 @@ if ($_POST) {
         <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     </head>
-    <body>
+    <body >
         <?php
         include_once './theme-part/top_nav.php';
         ?>
 
         <div class="container">
-            <div class="row">
-                <form class="col s12" method="POST">
+            <div class="row">  
+
+                <form class="col s12" method="POST" id="staggered-test">
                     <div class="row">
                         <div class="input-field col s12">
                             <input type="date" name="in_date" class="datepicker">
