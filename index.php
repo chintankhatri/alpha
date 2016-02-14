@@ -14,9 +14,9 @@ $db = new accounts();
         <title>Alpha</title>
 
         <!-- CSS  -->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-        <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <?php
+        include_once './theme-part/top_head.php';
+        ?>
     </head>
     <body>
         <?php
@@ -53,7 +53,7 @@ $db = new accounts();
                     ?>
                     <div class='col s12 m6 l4'><a class="waves-effect waves-light btn-large">
                             <i class="material-icons left">insert_chart</i><?php echo $data['ac_name'] ?>
-                            <span class='<?php // echo  $color - cur   ?>'>
+                            <span class='<?php // echo  $color - cur    ?>'>
                                 <?php echo $data['ac_opening_balance'] ?> </span></a></div>
 
                     <?php
