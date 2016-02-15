@@ -5,6 +5,12 @@ Date : 01-10-2016
 <!DOCTYPE html>
 <?php
 include_once './class.php';
+session_start();
+if ( $_SESSION['user']=== TRUE) {
+    
+} else {
+    header('location:login.php');
+}
 $db = new accounts();
 if ($_POST) {
     $insert_record = new income();
@@ -29,7 +35,7 @@ if ($_POST) {
         ?>
 
         <div  class="container">
-            
+
             <div class="row">  
 
                 <form class="col s12" method="POST" id="staggered-test">

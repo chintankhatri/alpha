@@ -5,6 +5,12 @@ Date : 01-10-2016
 <!DOCTYPE html>
 <?php
 include_once './class.php';
+session_start();
+if ($_SESSION['user']=== TRUE) {
+    
+} else {
+    header('location:login.php');
+}
 $db = new accounts();
 $transfer_records = new tranfer();
 if ($_POST) {

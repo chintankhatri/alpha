@@ -25,7 +25,7 @@ include_once './class.php';
         $logincheck = new login();
         if ($_POST) {
             if ($logincheck->checkuser($_POST['username'], $_POST['password']) > 0) {
-                $_SESSION['user'];
+                $_SESSION['user'] = TRUE;
                 header('location:index.php');
             } else {
                 ?>
@@ -55,7 +55,7 @@ include_once './class.php';
         <div class="container">
             <br>
             <div class="row">
-                <div class="col s12 m6" style="margin-left: 25%">
+                <div class="col s12 m6" >
                     <div class="card blue-grey darken-1">
                         <div class="card-content white-text">
                             <span class="card-title">Login</span>
@@ -64,7 +64,7 @@ include_once './class.php';
 
                                     <div class="row">
                                         <div class="input-field col s12">
-                                            <input  value="" autocomplete="off" type="text" name="username" class="validate">
+                                            <input  value="" autocomplete="off" type="password" name="username" class="validate">
                                             <label for="username">Username</label>
                                         </div>
                                     </div>

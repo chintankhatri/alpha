@@ -5,6 +5,12 @@ Date : 01-10-2016
 <!DOCTYPE html>
 <?php
 include_once './class.php';
+session_start();
+if ($_SESSION['user']=== TRUE) {
+    
+} else {
+    header('location:login.php');
+}
 $db = new accounts();
 ?>
 <html lang="en">
@@ -53,7 +59,7 @@ $db = new accounts();
                     ?>
                     <div class='col s12 m6 l4'><a class="waves-effect waves-light btn-large">
                             <i class="material-icons left">insert_chart</i><?php echo $data['ac_name'] ?>
-                            <span class='<?php // echo  $color - cur    ?>'>
+                            <span class='<?php // echo  $color - cur     ?>'>
                                 <?php echo $data['ac_opening_balance'] ?> </span></a></div>
 
                     <?php

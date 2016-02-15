@@ -6,6 +6,12 @@ Date : 01-10-2016
 <?php
 include_once './class.php';
 $db = new accounts();
+session_start();
+if ($_SESSION['user']=== TRUE) {
+    
+} else {
+    header('location:login.php');
+}
 $expense_records = new expense();
 if ($_POST) {
 
