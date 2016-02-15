@@ -28,7 +28,8 @@ if ($_POST) {
         include_once './theme-part/top_nav.php';
         ?>
 
-        <div class="container">
+        <div  class="container">
+            
             <div class="row">  
 
                 <form class="col s12" method="POST" id="staggered-test">
