@@ -97,3 +97,19 @@ class tranfer extends database {
     }
 
 }
+
+class login extends database {
+
+    public function checkuser($username, $password) {
+
+        $query = $this->db->prepare("select * from login where username='$username' and password='$password'");
+        $query->execute();
+        if ($query->rowCount() > 0) {
+            $user = TRUE;
+        } else {
+            $user = FALSE;
+        }
+        return $user;
+    }
+
+}
