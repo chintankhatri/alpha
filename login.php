@@ -4,15 +4,8 @@ Date : 01-10-2016
 -->
 <!DOCTYPE html>
 <?php
+session_start();
 include_once './class.php';
-$logincheck = new login();
-if ($_POST) {
-    if ($logincheck->checkuser($_POST['username'], $_POST['password']) > 0) {
-        header('location:index.php');
-    } else {
-        echo "<script> $('#modal1').openModal();</script>";
-    }
-}
 ?>
 <html lang="en">
     <head>
@@ -24,6 +17,28 @@ if ($_POST) {
         <?php
         include_once './theme-part/top_head.php';
         ?>
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="js/materialize.js"></script>
+        <script src="js/init.js"></script>
+
+        <?php
+        $logincheck = new login();
+        if ($_POST) {
+            if ($logincheck->checkuser($_POST['username'], $_POST['password']) > 0) {
+                $_SESSION['user'];
+                header('location:index.php');
+            } else {
+                ?>
+                <script>
+                    $(document).ready(function () {
+                        $('#modal1').openModal();
+                    });
+
+                </script>
+        <?php
+    }
+}
+?>
     </head>
     <body>
         <nav class="cyan darken-3" role="navigation">
@@ -39,7 +54,6 @@ if ($_POST) {
 
         <div class="container">
             <br>
-            <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
             <div class="row">
                 <div class="col s12 m6" style="margin-left: 25%">
                     <div class="card blue-grey darken-1">
@@ -50,13 +64,13 @@ if ($_POST) {
 
                                     <div class="row">
                                         <div class="input-field col s12">
-                                            <input  value=""  type="text" name="username" class="validate">
-                                            <label for="disabled">Username</label>
+                                            <input  value="" autocomplete="off" type="text" name="username" class="validate">
+                                            <label for="username">Username</label>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="input-field col s12">
-                                            <input id="password" type="password" name="password" class="validate">
+                                            <input id="password" autocomplete="off" value="" type="password" name="password" class="validate">
                                             <label for="password">Password</label>
                                         </div>
                                     </div>
@@ -75,11 +89,11 @@ if ($_POST) {
             <!-- Modal Structure -->
             <div id="modal1" class="modal">
                 <div class="modal-content">
-                    <h4>Modal Header</h4>
-                    <p>A bunch of text</p>
+                    <h4>Access Denied</h4>
+                    <p>Incorrect username or password !</p>
                 </div>
                 <div class="modal-footer">
-                    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+                    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Try again</a>
                 </div>
             </div>
         </div>
@@ -87,24 +101,14 @@ if ($_POST) {
 
         <footer class="page-footer orange">
 
-            <?php
-            include_once './theme-part/footer_part.php';
-            ?>
+<?php
+include_once './theme-part/footer_part.php';
+?>
         </footer>
 
 
         <!--  Scripts-->
-        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script src="js/materialize.js"></script>
-        <script src="js/init.js"></script>
-        <script>
-            $(document).ready(function () {
-                // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-                $('.modal-trigger').leanModal();
-            });
-            $('#modal1').openModal();
-            $('#modal1').closeModal();
-        </script>
-        <?php ?>
+
+<?php ?>
     </body>
 </html>

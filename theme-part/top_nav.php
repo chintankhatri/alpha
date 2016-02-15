@@ -6,12 +6,14 @@
             <li><a href="income.php">Income</a></li>
             <li><a href="expense.php">Expense</a></li>
             <li><a href="transfer.php">Transfer</a></li>
+            <li><a href="logout.php">Logout</a></li>
         </ul>
 
         <ul id="nav-mobile" class="side-nav">
             <li><a href="income.php">Income</a></li>
             <li><a href="expense.php">Expense</a></li>
             <li><a href="transfer.php">Transfer</a></li>
+            <li><a href="logout.php">Logout</a></li>
         </ul>
         <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
