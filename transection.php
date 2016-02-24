@@ -67,7 +67,7 @@ if ($_POST) {
                         </div>
                         <div id="yes" class="input-field col s12 ">
                             <select id="myhidden"  name="exp_cat_id">
-                                <option value="" >Choose Category</option>
+                                <option value="0" >Choose Category</option>
                                 <?php
                                 $array_expense_category = $insert_transection->show_expense_category();
                                 foreach ($array_expense_category as $data) {
@@ -130,6 +130,8 @@ if ($_POST) {
                         console.log(x);
                         $("#yes").addClass('cat-hide');
                         $("#yes").removeClass('cat-show');
+                        $("#myhidden").val(0);
+                        
                     }
                     if (x == 0) {
                         $("#yes").addClass('cat-show');
