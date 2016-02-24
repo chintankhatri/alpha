@@ -6,16 +6,21 @@ Date : 01-10-2016
 <?php
 include_once './class.php';
 session_start();
-if ( $_SESSION['user']=== TRUE) {
+if ($_SESSION['user'] === TRUE) {
     
 } else {
     header('location:login.php');
 }
 $db = new accounts();
+$insert_record = new income();
 if ($_POST) {
-    $insert_record = new income();
-    $insert_record->new_income($_POST['in_date'], $_POST['in_des'], $_POST['in_amount'], $_POST['in_ac_id']);
-    $db->debit_account($_POST['in_amount'], $_POST['in_ac_id']);
+  
+    if ($_POST['tr_type'] === '0') {
+        $db->credit_account($_POST['in_amount'], $_POST['in_ac_id']);
+    } else {
+        $db->debit_account($_POST['in_amount'], $_POST['in_ac_id']);
+    }
+    $insert_record->new_income($_POST['in_date'], $_POST['tr_type'], $_POST['in_des'], $_POST['in_amount'], $_POST['exp_cat_id'], $_POST['in_ac_id']);
 }
 ?>
 <html lang="en">
@@ -45,12 +50,35 @@ if ($_POST) {
                             <label for="date">Date</label>
                         </div>
                         <div class="input-field col s12">
+                            <select name="tr_type">
+                                <option value="" disabled selected>Choose one</option>
+                                <option value="1">Income</option>
+                                <option value="0">Expense</option>
+                            </select>
+
+                        </div>
+                        <div class="input-field col s12">
                             <input id="amount" name="in_amount" type="text" >
                             <label for="amount">amount</label>
                         </div>
                         <div class="input-field col s12">
                             <textarea id="textarea1" name="in_des" class="materialize-textarea"></textarea>
                             <label for="textarea1">Description</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <select name="exp_cat_id">
+                                <option value="" disabled selected>Choose Category</option>
+                                <?php
+                                $array_expense_category = $insert_record->show_expense_category();
+                                foreach ($array_expense_category as $data) {
+                                    ?>
+                                    <option value="<?php echo $data['exp_cat_id'] ?>"><?php echo $data['exp_cat_name'] ?></option>
+                                    <?php
+                                }
+                                ?>
+
+                            </select>
+
                         </div>
                         <div class="input-field col s12">
                             <select name="in_ac_id">
@@ -68,7 +96,7 @@ if ($_POST) {
 
                         </div>
                         <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-                            <i class="material-icons right">submi</i>
+                            <i class="material-icons right">submit</i>
                         </button>
                     </div>
                 </form>

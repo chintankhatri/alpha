@@ -62,8 +62,8 @@ class accounts extends database {
         return $row;
     }
 
-    public function show_transections_last_month($table_name) {
-        $query = $this->db->prepare("select * from $table_name");
+    public function show_transections_last_month($table_name, $ac_id) {
+        $query = $this->db->prepare("select * from $table_name where ac_id=$ac_id ");
         $query->execute();
         $row = $query->fetchAll();
         return $row;
@@ -73,17 +73,8 @@ class accounts extends database {
 
 class income extends database {
 
-    public function new_income($in_date, $in_description, $in_amount, $ac_id) {
-        $query = $this->db->prepare("insert into income (`in_date`, `in_description`, `in_amount`, `ac_id`) values ('{$in_date}','{$in_description}','{$in_amount}','{$ac_id}')");
-        $query->execute();
-    }
-
-}
-
-class expense extends database {
-
-    public function new_expense($ex_date, $ex_description, $ex_amount, $ex_cat_id, $ac_id) {
-        $query = $this->db->prepare("insert into expense (`ex_date`, `ex_description`, `ex_amount`, `ex_cat_id`,`ac_id`) values ('{$ex_date}','{$ex_description}','{$ex_amount}','{$ex_cat_id}','{$ac_id}')");
+    public function new_income($in_date, $tr_type, $in_description, $in_amount, $tr_cat_id, $ac_id) {
+        $query = $this->db->prepare("insert into income (`in_date`,`tr_type`, `in_description`, `in_amount`,`tr_cat_id`, `ac_id`) values ('{$in_date}','{$tr_type}','{$in_description}','{$in_amount}','{$tr_cat_id}','{$ac_id}')");
         $query->execute();
     }
 

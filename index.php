@@ -40,11 +40,11 @@ $db = new accounts();
 
                 <div class="col s12 m4">
                     <div class="card-panel teal">
-                        <span class="white-text">
-                            <?php
-                            echo $db->get_overall_balance();
-                            ?>
-                        </span>
+                        <a href="#" id="check" ><span class="white-text">
+                                <?php
+                                echo $db->get_overall_balance();
+                                ?>
+                            </span></a>
                     </div>
                 </div>
                 <div class="col s12 m4">
@@ -52,20 +52,44 @@ $db = new accounts();
                 </div>
             </div>
 
-            <div class="row" id="main-part">
+            <div  class="row" id="main-part">
                 <?php
                 $array_accounts = $db->show_accounts();
                 foreach ($array_accounts as $data) {
                     ?>
-                    <div class='col s12 m6 l4'><a href="" class="waves-effect waves-light btn-large">
+                    <div class='col s12 m6 l4'><a  class="waves-effect waves-light btn-large">
                             <i class="material-icons left">insert_chart</i><?php echo $data['ac_name'] ?>
-                            <span class='<?php // echo  $color - cur      ?>'>
+                            <span class='<?php // echo  $color - cur          ?>'>
                                 <?php echo $data['ac_opening_balance'] ?> </span></a></div>
 
                     <?php
                 }
                 ?>
 
+            </div>
+
+            <div  class="row" id="main-part">
+
+                <div class='col s12 m6 l4'>
+
+                    <ul class="collapsible" data-collapsible="accordion">
+                        <li>
+                            <div class="collapsible-header"><i class="material-icons">filter_drama</i><?php echo $data['ac_name'] ?>
+                                <span class='<?php // echo  $color - cur          ?>'>
+                                    <?php echo $data['ac_opening_balance'] ?> </span></div>
+                            <div class="collapsible-body"><p>  
+                                
+                                    <?php
+                                    $array_income = $db->show_transections_last_month('accounts',1);
+                                    foreach ($array_income as $income_data) {
+                                        echo $income_data['ac_id'];
+                                    }
+                                    ?></p>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
             </div>
             <br>
         </div>
@@ -85,17 +109,15 @@ $db = new accounts();
         <script src="js/init.js"></script>
         <?php
         ?>
-
-        <p id="ck" style="display: none">
-
-
-        </p>
-        <p id="ck" >Good Bye</p>
-
         <script>
-            $("a").click(function () {
-                $("#ck").toggle();
+            $(document).ready(function () {
+                $('.collapsible').collapsible({
+                    accordion: false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+                });
             });
-        </script>
+        </script>   
+
+
+
     </body>
 </html>
