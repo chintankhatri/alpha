@@ -57,7 +57,7 @@ $db = new accounts();
                 $array_accounts = $db->show_accounts();
                 foreach ($array_accounts as $data) {
                     ?>
-                    <div class='col s12 m6 l4'><a class="waves-effect waves-light btn-large">
+                <div class='col s12 m6 l4'><a href="display_page.php" class="waves-effect waves-light btn-large">
                             <i class="material-icons left">insert_chart</i><?php echo $data['ac_name'] ?>
                             <span class='<?php // echo  $color - cur     ?>'>
                                 <?php echo $data['ac_opening_balance'] ?> </span></a></div>
