@@ -71,10 +71,10 @@ class accounts extends database {
 
 }
 
-class income extends database {
+class transection extends database {
 
-    public function new_income($in_date, $tr_type, $in_description, $in_amount, $tr_cat_id, $ac_id) {
-        $query = $this->db->prepare("insert into income (`in_date`,`tr_type`, `in_description`, `in_amount`,`tr_cat_id`, `ac_id`) values ('{$in_date}','{$tr_type}','{$in_description}','{$in_amount}','{$tr_cat_id}','{$ac_id}')");
+    public function new_transection($in_date, $tr_type, $in_description, $in_amount, $tr_cat_id, $ac_id) {
+        $query = $this->db->prepare("insert into transection (`in_date`,`tr_type`, `in_description`, `in_amount`,`tr_cat_id`, `ac_id`) values ('{$in_date}','{$tr_type}','{$in_description}','{$in_amount}','{$tr_cat_id}','{$ac_id}')");
         $query->execute();
     }
 

@@ -12,7 +12,7 @@ if ($_SESSION['user'] === TRUE) {
     header('location:login.php');
 }
 $db = new accounts();
-$insert_record = new income();
+$insert_transection = new transection();
 if ($_POST) {
   
     if ($_POST['tr_type'] === '0') {
@@ -20,7 +20,7 @@ if ($_POST) {
     } else {
         $db->debit_account($_POST['in_amount'], $_POST['in_ac_id']);
     }
-    $insert_record->new_income($_POST['in_date'], $_POST['tr_type'], $_POST['in_des'], $_POST['in_amount'], $_POST['exp_cat_id'], $_POST['in_ac_id']);
+    $insert_transection->new_transection($_POST['in_date'], $_POST['tr_type'], $_POST['in_des'], $_POST['in_amount'], $_POST['exp_cat_id'], $_POST['in_ac_id']);
 }
 ?>
 <html lang="en">
@@ -69,7 +69,7 @@ if ($_POST) {
                             <select name="exp_cat_id">
                                 <option value="" disabled selected>Choose Category</option>
                                 <?php
-                                $array_expense_category = $insert_record->show_expense_category();
+                                $array_expense_category = $insert_transection->show_expense_category();
                                 foreach ($array_expense_category as $data) {
                                     ?>
                                     <option value="<?php echo $data['exp_cat_id'] ?>"><?php echo $data['exp_cat_name'] ?></option>
