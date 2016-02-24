@@ -62,6 +62,13 @@ class accounts extends database {
         return $row;
     }
 
+    public function show_transections_last_month($table_name) {
+        $query = $this->db->prepare("select * from $table_name");
+        $query->execute();
+        $row = $query->fetchAll();
+        return $row;
+    }
+
 }
 
 class income extends database {

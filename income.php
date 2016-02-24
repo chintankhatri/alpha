@@ -68,7 +68,7 @@ if ($_POST) {
 
                         </div>
                         <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-                            <i class="material-icons right">submit</i>
+                            <i class="material-icons right">submi</i>
                         </button>
                     </div>
                 </form>
