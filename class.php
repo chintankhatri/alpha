@@ -63,7 +63,7 @@ class accounts extends database {
     }
 
     public function show_transections_last_month($table_name, $ac_id) {
-        $query = $this->db->prepare("select * from $table_name where ac_id=$ac_id ");
+        $query = $this->db->prepare("select * from $table_name where ac_id=$ac_id order by in_date DESC LIMIT 5");
         $query->execute();
         $row = $query->fetchAll();
         return $row;

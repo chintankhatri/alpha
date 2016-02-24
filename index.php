@@ -52,44 +52,55 @@ $db = new accounts();
                 </div>
             </div>
 
+            <!--            <div  class="row" id="main-part">
+            <?php
+            /* $array_accounts = $db->show_accounts();
+              foreach ($array_accounts as $data) {
+              ?>
+              <div class='col s12 m6 l4'><a  class="waves-effect waves-light btn-large">
+              <i class="material-icons left">insert_chart</i><?php echo $data['ac_name'] ?>
+              <span class='<?php // echo  $color - cur           ?>'>
+              <?php echo $data['ac_opening_balance'] ?> </span></a></div>
+
+              <?php
+              } */
+            ?>
+            
+                        </div>-->
+
             <div  class="row" id="main-part">
-                <?php
-                $array_accounts = $db->show_accounts();
-                foreach ($array_accounts as $data) {
-                    ?>
-                    <div class='col s12 m6 l4'><a  class="waves-effect waves-light btn-large">
-                            <i class="material-icons left">insert_chart</i><?php echo $data['ac_name'] ?>
-                            <span class='<?php // echo  $color - cur          ?>'>
-                                <?php echo $data['ac_opening_balance'] ?> </span></a></div>
-
-                    <?php
-                }
-                ?>
-
-            </div>
-
-            <div  class="row" id="main-part">
-
+<?php $array_accounts = $db->show_accounts();
+          foreach ($array_accounts as $data) { ?>
                 <div class='col s12 m6 l4'>
 
                     <ul class="collapsible" data-collapsible="accordion">
                         <li>
                             <div class="collapsible-header"><i class="material-icons">filter_drama</i><?php echo $data['ac_name'] ?>
-                                <span class='<?php // echo  $color - cur          ?>'>
+                                <span class='<?php // echo  $color - cur            ?>'>
                                     <?php echo $data['ac_opening_balance'] ?> </span></div>
-                            <div class="collapsible-body"><p>  
-                                
-                                    <?php
-                                    $array_income = $db->show_transections_last_month('accounts',1);
-                                    foreach ($array_income as $income_data) {
-                                        echo $income_data['ac_id'];
-                                    }
-                                    ?></p>
+                            <div class="collapsible-body"> 
+
+                                <?php $array_income = $db->show_transections_last_month('transection',$data['ac_id'] ); ?>
+
+                                <table>
+
+                                    <tbody>
+                                        <?php foreach ($array_income as $income_data) {
+                                            ?>
+                                            <tr>
+                                                <td><?php echo $income_data['in_date'] ?></td>
+                                                <td><?php echo $income_data['in_amount'] ?></td>
+                                            </tr>        <?php } ?>
+                                    </tbody>
+                                </table>
+
+
                             </div>
                         </li>
 
                     </ul>
                 </div>
+              <?php } ?>
             </div>
             <br>
         </div>
