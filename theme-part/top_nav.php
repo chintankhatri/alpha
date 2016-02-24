@@ -3,15 +3,15 @@
     <div class="nav-wrapper container"><a id="logo-container" href="index.php" class="brand-logo">aLpha</a>
         
         <ul class="right hide-on-med-and-down">
-            <li><a href="income.php">Income</a></li>
-            <li><a href="expense.php">Expense</a></li>
+           <li><a href="transection.php">Transection</a></li>
+            
             <li><a href="transfer.php">Transfer</a></li>
             <li><a href="logout.php">Logout</a></li>
         </ul>
 
         <ul id="nav-mobile" class="side-nav">
-            <li><a href="income.php">Income</a></li>
-            <li><a href="expense.php">Expense</a></li>
+            <li><a href="transection.php">Transection</a></li>
+         
             <li><a href="transfer.php">Transfer</a></li>
             <li><a href="logout.php">Logout</a></li>
         </ul>
