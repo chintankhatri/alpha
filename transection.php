@@ -14,7 +14,7 @@ if ($_SESSION['user'] === TRUE) {
 $db = new accounts();
 $insert_transection = new transection();
 if ($_POST) {
-  
+
     if ($_POST['tr_type'] === '0') {
         $db->credit_account($_POST['in_amount'], $_POST['in_ac_id']);
     } else {
@@ -50,7 +50,7 @@ if ($_POST) {
                             <label for="date">Date</label>
                         </div>
                         <div class="input-field col s12">
-                            <select name="tr_type">
+                            <select id="myselect" name="tr_type">
                                 <option value="" disabled selected>Choose one</option>
                                 <option value="1">Income</option>
                                 <option value="0">Expense</option>
@@ -65,9 +65,9 @@ if ($_POST) {
                             <textarea id="textarea1" name="in_des" class="materialize-textarea"></textarea>
                             <label for="textarea1">Description</label>
                         </div>
-                        <div class="input-field col s12">
-                            <select name="exp_cat_id">
-                                <option value="" disabled selected>Choose Category</option>
+                        <div id="yes" class="input-field col s12 ">
+                            <select id="myhidden"  name="exp_cat_id">
+                                <option value="" >Choose Category</option>
                                 <?php
                                 $array_expense_category = $insert_transection->show_expense_category();
                                 foreach ($array_expense_category as $data) {
@@ -120,6 +120,23 @@ if ($_POST) {
         <script src="js/materialize.js"></script>
         <script src="js/init.js"></script>
         <script>
+
+            jQuery(function ($) {
+                //change event handler for the parent
+                $('#myselect').change(function () {
+                    var x = $('#myselect').val();
+
+                    if (x == 1) {
+                        console.log(x);
+                        $("#yes").addClass('cat-hide');
+                        $("#yes").removeClass('cat-show');
+                    }
+                    if (x == 0) {
+                        $("#yes").addClass('cat-show');
+                        $("#yes").removeClass('cat-hide');
+                    }
+                });
+            });
             $('.datepicker').pickadate({
                 selectMonths: true, // Creates a dropdown to control month
                 selectYears: 15, // Creates a dropdown of 15 years to control year
@@ -128,6 +145,7 @@ if ($_POST) {
 
             $(document).ready(function () {
                 $('select').material_select();
+
             });
         </script>
     </body>

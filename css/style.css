@@ -31,3 +31,9 @@
 .staggered-test{
   //  backface-visibility: hidden;
 }
+.cat-hide{
+   display: none; 
+}
+.cat-show{
+   display: block; 
+}
