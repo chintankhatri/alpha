@@ -40,7 +40,7 @@ $db = new accounts();
 
                 <div class="col s12 m4">
                     <div class="card-panel teal">
-                        <a href="#" id="check" ><span class="white-text">
+                        <a href="#" id="check" ><span style="font-size: 200%;" class="<?php if($data['ac_opening_balance']>0){  echo 'green-cur';   }else{  echo 'red-cur';  }?>">
                                 <?php
                                 echo $db->get_overall_balance();
                                 ?>
@@ -64,8 +64,13 @@ $db = new accounts();
 
                     <ul class="collapsible" data-collapsible="accordion">
                         <li>
-                            <div class="collapsible-header"><i class="material-icons">filter_drama</i><?php echo $data['ac_name'] ?>
-                                <span class='<?php // echo  $color - cur   ?>'><?php echo $data['ac_opening_balance'] ?> </span>
+                            <div class="collapsible-header"><i class="material-icons">trending_up</i><?php echo $data['ac_name'] ?>
+
+                                   
+                                    <span class="<?php if($data['ac_opening_balance']>0){  echo 'green-cur';   }else{  echo 'red-cur';  }?>">
+                                    
+                                    <?php echo $data['ac_opening_balance'] ?> </span>
+                            
                             </div>
                             <div class="collapsible-body"> 
 
