@@ -48,7 +48,8 @@ $db = new accounts();
                             <th >Description</th>
 
                             <th >Expense</th>
-                            <th >Amount</th>
+                            <th >Debit</th>
+                            <th >Credit</th>
                         </tr>
                     </thead>
 
@@ -59,10 +60,22 @@ $db = new accounts();
                         foreach ($transection_query as $data) {
                             ?>
                             <tr>
-                                <td><?php echo $data['in_date'] ?></td>
+                                <td><?php echo $data['tr_type'] ?></td>
                                 <td><?php echo $data['in_description'] ?></td>
                                 <td><?php echo $data['exp_cat_name'] ?></td>
-                                <td><?php echo $data['in_amount'] ?></td>
+
+                                <?php
+                                if ($data['tr_type'] === '1') {
+                                    ?> <td><?php echo $data['in_amount'] ?></td><td></td>
+                                <?php
+                                } else {
+                                    ?><td></td><td><?php echo $data['in_amount'] ?></td>
+                                <?php }
+                                ?>
+
+
+
+
 
                             </tr>
                         <?php }
