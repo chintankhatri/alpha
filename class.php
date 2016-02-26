@@ -14,7 +14,7 @@ class database {
     private $username = 'root';
     private $password = '';
     private $host = 'localhost';
-    private $dbname = 'pha';
+    private $dbname = 'alpha';
     public $db;
 
     /**
@@ -62,8 +62,8 @@ class accounts extends database {
         return $row;
     }
 
-    public function show_transections_last_month($table_name, $ac_id) {
-        $query = $this->db->prepare("select * from $table_name where ac_id=$ac_id order by in_date DESC LIMIT 4");
+    public function show_transections_last_month($table_name, $ac_id,$limit) {
+        $query = $this->db->prepare("select * from $table_name where ac_id=$ac_id order by in_date DESC LIMIT $limit");
         $query->execute();
         $row = $query->fetchAll();
         return $row;

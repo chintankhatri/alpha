@@ -69,7 +69,7 @@ $db = new accounts();
                             </div>
                             <div class="collapsible-body"> 
 
-                                <?php $array_income = $db->show_transections_last_month('transection', $data['ac_id']); ?>
+                                <?php $array_income = $db->show_transections_last_month('transection', $data['ac_id'],4); ?>
 
                                 <table>
 
@@ -83,7 +83,7 @@ $db = new accounts();
                                             </tr> 
                                         <?php } ?>
                                             <tr>
-                                                <td><a href="?ac_id=<?php echo $income_data['ac_id'] ?>" >View all</a></td>
+                                                <td><a href="display_page.php?ac_id=<?php echo $income_data['ac_id'] ?>" >View all</a></td>
                                             </tr>
                                     </tbody>
                                 </table>
