@@ -44,25 +44,30 @@ $db = new accounts();
                 <table class="">
                     <thead>
                         <tr>
-                            <th data-field="id">Name</th>
-                            <th data-field="name">Item Name</th>
-                            <th data-field="price">Item Price</th>
+                            <th>Date</th>
+                            <th >Description</th>
+
+                            <th >Expense</th>
+                            <th >Amount</th>
                         </tr>
                     </thead>
 
                     <tbody>
-                        <tr>
-                            <?php
-                            $transection_query = $db->show_transection_details($_GET['ac_id']);
-                            foreach ($transection_query as $data) {
-                                ?>
+
+                        <?php
+                        $transection_query = $db->show_transection_details($_GET['ac_id']);
+                        foreach ($transection_query as $data) {
+                            ?>
+                            <tr>
                                 <td><?php echo $data['in_date'] ?></td>
                                 <td><?php echo $data['in_description'] ?></td>
-                                  <td><?php echo $data['in_amount'] ?></td>
                                 <td><?php echo $data['exp_cat_name'] ?></td>
-                            <?php }
-                            ?>  
-                        </tr>
+                                <td><?php echo $data['in_amount'] ?></td>
+
+                            </tr>
+                        <?php }
+                        ?>  
+
                     </tbody>
                 </table>
             </div>
