@@ -12,10 +12,13 @@ if ($_SESSION['user']=== TRUE) {
     header('location:login.php');
 }
 $db = new accounts();
+$insert_transection = new transection();
 $transfer_records = new tranfer();
 if ($_POST) {
 
     $transfer_records->new_transfer($_POST['tr_date'], $_POST['tr_amount'], $_POST['tr_des'], $_POST['tr_ac_id_from'], $_POST['tr_ac_id_to']);
+    $insert_transection->new_transection($_POST['tr_date'], 1, $_POST['tr_des'], $_POST['tr_amount'],15,$_POST['tr_ac_id_to'] );
+    $insert_transection->new_transection($_POST['tr_date'], 0, $_POST['tr_des'], $_POST['tr_amount'],15,$_POST['tr_ac_id_from'] );
     $db->credit_account($_POST['tr_amount'], $_POST['tr_ac_id_from']);
     $db->debit_account($_POST['tr_amount'], $_POST['tr_ac_id_to']);
 }
