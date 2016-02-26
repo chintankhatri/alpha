@@ -83,7 +83,7 @@ $db = new accounts();
                                             </tr> 
                                         <?php } ?>
                                             <tr>
-                                                <td><a href="display_page.php?ac_id=<?php echo $income_data['ac_id'] ?>" >View all</a></td>
+                                                <td><a href="display_page.php?ac_id=<?php echo $data['ac_id'] ?>" >View all</a></td>
                                             </tr>
                                     </tbody>
                                 </table>

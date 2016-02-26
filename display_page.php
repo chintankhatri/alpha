@@ -41,7 +41,7 @@ $db = new accounts();
 
 
             <div  class="row" id="main-part">
-                <table class="">
+                <table>
                     <thead>
                         <tr>
                             <th>Date</th>
@@ -60,7 +60,7 @@ $db = new accounts();
                         foreach ($transection_query as $data) {
                             ?>
                             <tr>
-                                <td><?php echo $data['tr_type'] ?></td>
+                                <td><?php echo $data['in_date'] ?></td>
                                 <td><?php echo $data['in_description'] ?></td>
                                 <td><?php echo $data['exp_cat_name'] ?></td>
 

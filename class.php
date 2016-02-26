@@ -84,7 +84,7 @@ class accounts extends database {
     INNER JOIN `alpha`.`expense_category` 
         ON (`transection`.`exp_cat_id` = `expense_category`.`exp_cat_id`)
     INNER JOIN `alpha`.`accounts` 
-        ON (`transection`.`ac_id` = `accounts`.`ac_id`) where `transection`.`ac_id` = $ac_id");
+        ON (`transection`.`ac_id` = `accounts`.`ac_id`) where `transection`.`ac_id`   = $ac_id ");
         $query->execute();
         $row = $query->fetchAll();
         return $row;

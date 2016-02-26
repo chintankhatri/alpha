@@ -17,10 +17,12 @@ if ($_POST) {
 
     if ($_POST['tr_type'] === '0') {
         $db->credit_account($_POST['in_amount'], $_POST['in_ac_id']);
+        $cat_id = $_POST['exp_cat_id'];
     } else {
         $db->debit_account($_POST['in_amount'], $_POST['in_ac_id']);
+        $cat_id = 13;
     }
-    $insert_transection->new_transection($_POST['in_date'], $_POST['tr_type'], $_POST['in_des'], $_POST['in_amount'], $_POST['exp_cat_id'], $_POST['in_ac_id']);
+    $insert_transection->new_transection($_POST['in_date'], $_POST['tr_type'], $_POST['in_des'], $_POST['in_amount'], $cat_id, $_POST['in_ac_id']);
 }
 ?>
 <html lang="en">
@@ -67,7 +69,7 @@ if ($_POST) {
                         </div>
                         <div id="yes" class="input-field col s12 ">
                             <select id="myhidden"  name="exp_cat_id">
-                                <option value="0" >Choose Category</option>
+                                <option value="13" >Choose Category</option>
                                 <?php
                                 $array_expense_category = $insert_transection->show_expense_category();
                                 foreach ($array_expense_category as $data) {
@@ -117,7 +119,7 @@ if ($_POST) {
 
         <!--  Scripts-->
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
- 
+
         <script src="js/materialize.js"></script>
         <script src="js/init.js"></script>
         <script>
