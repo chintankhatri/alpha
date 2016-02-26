@@ -117,6 +117,7 @@ if ($_POST) {
 
         <!--  Scripts-->
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+ 
         <script src="js/materialize.js"></script>
         <script src="js/init.js"></script>
         <script>
@@ -131,7 +132,7 @@ if ($_POST) {
                         $("#yes").addClass('cat-hide');
                         $("#yes").removeClass('cat-show');
                         $("#myhidden").val(0);
-                        
+
                     }
                     if (x == 0) {
                         $("#yes").addClass('cat-show');

@@ -52,35 +52,24 @@ $db = new accounts();
                 </div>
             </div>
 
-            <!--            <div  class="row" id="main-part">
+
+     
+
+        <div  class="row" id="main-part">
             <?php
-            /* $array_accounts = $db->show_accounts();
-              foreach ($array_accounts as $data) {
-              ?>
-              <div class='col s12 m6 l4'><a  class="waves-effect waves-light btn-large">
-              <i class="material-icons left">insert_chart</i><?php echo $data['ac_name'] ?>
-              <span class='<?php // echo  $color - cur           ?>'>
-              <?php echo $data['ac_opening_balance'] ?> </span></a></div>
-
-              <?php
-              } */
-            ?>
-            
-                        </div>-->
-
-            <div  class="row" id="main-part">
-<?php $array_accounts = $db->show_accounts();
-          foreach ($array_accounts as $data) { ?>
+            $array_accounts = $db->show_accounts();
+            foreach ($array_accounts as $data) {
+                ?>
                 <div class='col s12 m6 l4'>
 
                     <ul class="collapsible" data-collapsible="accordion">
                         <li>
                             <div class="collapsible-header"><i class="material-icons">filter_drama</i><?php echo $data['ac_name'] ?>
-                                <span class='<?php // echo  $color - cur            ?>'>
-                                    <?php echo $data['ac_opening_balance'] ?> </span></div>
+                                <span class='<?php // echo  $color - cur   ?>'><?php echo $data['ac_opening_balance'] ?> </span>
+                            </div>
                             <div class="collapsible-body"> 
 
-                                <?php $array_income = $db->show_transections_last_month('transection',$data['ac_id'] ); ?>
+                                <?php $array_income = $db->show_transections_last_month('transection', $data['ac_id']); ?>
 
                                 <table>
 
@@ -90,7 +79,12 @@ $db = new accounts();
                                             <tr>
                                                 <td><?php echo $income_data['in_date'] ?></td>
                                                 <td><?php echo $income_data['in_amount'] ?></td>
-                                            </tr>        <?php } ?>
+
+                                            </tr> 
+                                        <?php } ?>
+                                            <tr>
+                                                <td><a href="?ac_id=<?php echo $income_data['ac_id'] ?>" >View all</a></td>
+                                            </tr>
                                     </tbody>
                                 </table>
 
@@ -100,35 +94,34 @@ $db = new accounts();
 
                     </ul>
                 </div>
-              <?php } ?>
-            </div>
-            <br>
-        </div>
+            <?php } ?>
+          </div>
+     
+    </div>
 
 
-        <footer class="page-footer orange">
+    <footer class="page-footer orange">
 
-            <?php
-            include_once './theme-part/footer_part.php';
-            ?>
-        </footer>
-
-
-        <!--  Scripts-->
-        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script src="js/materialize.js"></script>
-        <script src="js/init.js"></script>
         <?php
+        include_once './theme-part/footer_part.php';
         ?>
-        <script>
-            $(document).ready(function () {
-                $('.collapsible').collapsible({
-                    accordion: false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
-                });
+    </footer>
+
+
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.js"></script>
+    <script src="js/init.js"></script>
+    <?php ?>
+    <script>
+        $(document).ready(function () {
+            $('.collapsible').collapsible({
+                accordion: false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
             });
-        </script>   
+        });
+    </script>   
 
 
 
-    </body>
+</body>
 </html>
