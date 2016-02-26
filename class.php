@@ -62,8 +62,29 @@ class accounts extends database {
         return $row;
     }
 
-    public function show_transections_last_month($table_name, $ac_id,$limit) {
+    public function show_transections_last_month($table_name, $ac_id, $limit) {
         $query = $this->db->prepare("select * from $table_name where ac_id=$ac_id order by in_date DESC LIMIT $limit");
+        $query->execute();
+        $row = $query->fetchAll();
+        return $row;
+    }
+
+    public function show_transection_details($ac_id) {
+        $query = $this->db->prepare("SELECT 
+        `transection`.`in_id`, `transection`.`in_date`, 
+        `transection`.`tr_type`, 
+        `transection`.`in_description`, 
+        `transection`.`in_amount`, 
+        `transection`.`exp_cat_id`,
+        `transection`. `ac_id`,
+        `accounts`.`ac_name`,
+        `expense_category`.`exp_cat_name`
+    FROM
+        `alpha`.`transection`
+    INNER JOIN `alpha`.`expense_category` 
+        ON (`transection`.`exp_cat_id` = `expense_category`.`exp_cat_id`)
+    INNER JOIN `alpha`.`accounts` 
+        ON (`transection`.`ac_id` = `accounts`.`ac_id`) where `transection`.`ac_id` = $ac_id");
         $query->execute();
         $row = $query->fetchAll();
         return $row;
@@ -74,7 +95,7 @@ class accounts extends database {
 class transection extends database {
 
     public function new_transection($in_date, $tr_type, $in_description, $in_amount, $tr_cat_id, $ac_id) {
-        $query = $this->db->prepare("insert into transection (`in_date`,`tr_type`, `in_description`, `in_amount`,`tr_cat_id`, `ac_id`) values ('{$in_date}','{$tr_type}','{$in_description}','{$in_amount}','{$tr_cat_id}','{$ac_id}')");
+        $query = $this->db->prepare("insert into transection (`in_date`,`tr_type`, `in_description`, `in_amount`,`exp_cat_id`, `ac_id`) values ('{$in_date}','{$tr_type}','{$in_description}','{$in_amount}','{$tr_cat_id}','{$ac_id}')");
         $query->execute();
     }
 

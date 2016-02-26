@@ -53,27 +53,15 @@ $db = new accounts();
                     <tbody>
                         <tr>
                             <?php
-                            $transection_query = mysql_query("SELECT
-`in_id`, `in_date`, `tr_type`, `in_description`, `in_amount`, `tr_cat_id`, `ac_id` FROM
-    
-`alpha`.`transection`
-    INNER JOIN `alpha`.`expense_category` 
-        ON (`transection`.`ex_cat_id` = `expense_category`.`exp_cat_id`)
-    INNER JOIN `alpha`.`accounts` 
-        ON (`expense`.`ac_id` = `accounts`.`ac_id`);
-FROM
-    `alpha`.`transection`
-    INNER JOIN `alpha`.`expense_category` 
-        ON (`transection`.`ex_cat_id` = `expense_category`.`exp_cat_id`)
-    INNER JOIN `alpha`.`accounts` 
-        ON (`transection`.`ac_id` = `accounts`.`ac_id`)");
-                            while ($data = mysql_fetch_array($$transection_query)) {
+                            $transection_query = $db->show_transection_details($_GET['ac_id']);
+                            foreach ($transection_query as $data) {
                                 ?>
                                 <td><?php echo $data['in_date'] ?></td>
                                 <td><?php echo $data['in_description'] ?></td>
-                                <td><?php echo $data['exp_cate_name'] ?></td>
-<?php }
-?>  
+                                  <td><?php echo $data['in_amount'] ?></td>
+                                <td><?php echo $data['exp_cat_name'] ?></td>
+                            <?php }
+                            ?>  
                         </tr>
                     </tbody>
                 </table>
@@ -84,9 +72,9 @@ FROM
 
         <footer class="page-footer orange">
 
-<?php
-include_once './theme-part/footer_part.php';
-?>
+            <?php
+            include_once './theme-part/footer_part.php';
+            ?>
         </footer>
 
 
@@ -94,7 +82,7 @@ include_once './theme-part/footer_part.php';
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="js/materialize.js"></script>
         <script src="js/init.js"></script>
-<?php ?>
+        <?php ?>
         <script>
             $(document).ready(function () {
                 $('.collapsible').collapsible({
