@@ -2,7 +2,6 @@
 include_once './class.php';
 
 $db = new reports();
-
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -12,12 +11,32 @@ $db = new reports();
 
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
         <style type="text/css">
-
+            html, body {
+                height:100%;
+            }
+            #box {
+                height:80%;
+                background:#331266;
+            }
+            #container {
+                position:relative;
+                height:100%;
+            }
         </style>
         <script type="text/javascript">
+            var chart1;
             $(function () {
-                $('#container').highcharts({
-                    chart: {
+                var newh = $("#box").height();
+
+                $(window).resize(function () {
+
+                    newh = $("#box").height();
+                    chart1.redraw();
+                    chart1.reflow();
+                });
+                chart1 = new Highcharts.Chart({
+              chart: {
+                          renderTo: 'container',
                         type: 'pie',
                         options3d: {
                             enabled: true,
@@ -66,6 +85,7 @@ $db = new reports();
                         }]
                 });
             });
+
         </script>
     </head>
     <body>
@@ -74,6 +94,9 @@ $db = new reports();
         <script src="https://code.highcharts.com/highcharts-3d.js"></script>
         <script src="https://code.highcharts.com/modules/exporting.js"></script>
 
-        <div id="container" style="height: 400px"></div>
+        <div id="box">
+            <div id="container"></div>
+        </div>
+
     </body>
 </html>
