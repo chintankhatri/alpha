@@ -58,6 +58,9 @@ $db = new accounts();
         <div  class="row" id="main-part">
             <?php
             $array_accounts = $db->show_accounts();
+            /*
+             * LOOP DISPLAY ALL THE AFECTED ACCOUNTS WITH RESPECTED BALANCE(!=0)
+             */
             foreach ($array_accounts as $data) {
                 ?>
                 <div class='col s12 m6 l4'>
@@ -84,7 +87,7 @@ $db = new accounts();
                                             <tr>
                                                 <td><?php echo $income_data['in_date'] ?></td>
                                                 <td><?php echo $income_data['in_amount'] ?></td>
-
+                                                <td><?php if($income_data['tr_type'] === '1'){ echo '+'; }else { echo '-';} ?></td>
                                             </tr> 
                                         <?php } ?>
                                             <tr>
