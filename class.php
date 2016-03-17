@@ -39,7 +39,7 @@ class database {
 class accounts extends database {
 
     public function show_accounts() {
-        $query = $this->db->prepare('select * from accounts where != 0');
+        $query = $this->db->prepare('select * from accounts where ac_opening_balance != 0');
         $query->execute();
         $row = $query->fetchAll();
         return $row;
