@@ -132,3 +132,28 @@ class login extends database {
     }
 
 }
+
+class reports extends database {
+
+    public function show_cat_wise_amount() {
+        $query = $this->db->prepare("SELECT 
+        
+        `transection`.`in_date`, 
+        `transection`.`tr_type`, 
+        
+        sum(`transection`.`in_amount`), 
+        `transection`.`exp_cat_id`,
+       
+        `expense_category`.`exp_cat_name`
+    FROM
+        `alpha`.`transection`
+    INNER JOIN `alpha`.`expense_category` 
+        ON (`transection`.`exp_cat_id` = `expense_category`.`exp_cat_id`)
+    INNER JOIN `alpha`.`accounts` 
+        ON (`transection`.`ac_id` = `accounts`.`ac_id`) where `transection`.`tr_type`='0' and  `transection`.`exp_cat_id` !='15' and  `transection`.`exp_cat_id` !='13'  GROUP BY `transection`.`exp_cat_id`  ");
+        $query->execute();
+        $row = $query->fetchAll();
+        return $row;
+    }
+
+}
