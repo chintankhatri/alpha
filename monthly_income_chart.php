@@ -7,7 +7,7 @@ $db = new reports();
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <title>Highcharts Example</title>
+        <title>aLpha</title>
 
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
         <style type="text/css">
@@ -22,6 +22,9 @@ $db = new reports();
                 position:relative;
                 height:100%;
             }
+            tspan{
+                font-size: 100% !important;
+            }
         </style>
         <script type="text/javascript">
             var chart1;
@@ -35,54 +38,42 @@ $db = new reports();
                     chart1.reflow();
                 });
                 chart1 = new Highcharts.Chart({
-              chart: {
+                    chart: {
                           renderTo: 'container',
-                        type: 'pie',
-                        options3d: {
-                            enabled: true,
-                            alpha: 45,
-                            beta: 0
-                        }
+                        type: 'line'
                     },
                     title: {
-                        text: 'Browser market shares at a specific website, 2014'
+                        text: 'Monthly Income chart'
                     },
-                    tooltip: {
-                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    subtitle: {
+                        text: ''
+                    },
+                    xAxis: {
+                        categories: [ 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Monthly Income'
+                        }
                     },
                     plotOptions: {
-                        pie: {
-                            allowPointSelect: true,
-                            cursor: 'pointer',
-                            depth: 35,
+                        line: {
                             dataLabels: {
-                                enabled: true,
-                                format: '{point.name}'
-                            }
+                                enabled: true
+                            },
+                            enableMouseTracking: false
                         }
                     },
                     series: [{
-                            type: 'pie',
-                            name: 'Browser share',
-                            
-                            <?php
-                          
-                            $report_data=$db->show_cat_wise_amount();
-                            echo'data:[';
-                            foreach ($report_data as $data){
-                                echo "['$data[4]',$data[2]],";
-                            }
-                            echo ']';
-                            ?>
-                            /*data: [
-                                ['Firefox', 45.0],
-                                ['IE', 26.8],
-                                ['Chrome', 12.8],
-                                ['Safari', 8.5],
-                                ['Opera', 6.2],
-                                ['Others', 0.7]
-                            ]*/
-                        }]
+                            name: 'Income',
+<?php
+$report_data = $db->show_expense_month_wise();
+echo'data:[';
+foreach ($report_data as $data) {
+    echo "[$data[3]],";
+}
+echo ']';
+?>                        }]
                 });
             });
 

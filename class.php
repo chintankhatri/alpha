@@ -11,7 +11,7 @@ project:alpha
  */
 class database {
 
-    private $username = 'root';
+  private $username = 'root';
     private $password = '';
     private $host = 'localhost';
     private $dbname = 'alpha';
@@ -151,6 +151,17 @@ class reports extends database {
         ON (`transection`.`exp_cat_id` = `expense_category`.`exp_cat_id`)
     INNER JOIN `alpha`.`accounts` 
         ON (`transection`.`ac_id` = `accounts`.`ac_id`) where `transection`.`tr_type`='0' and  `transection`.`exp_cat_id` !='15' and  `transection`.`exp_cat_id` !='13'  GROUP BY `transection`.`exp_cat_id`  ");
+        $query->execute();
+        $row = $query->fetchAll();
+        return $row;
+    }
+
+    public function show_expense_month_wise() {
+        $query = $this->db->prepare("SELECT  exp_cat_id,MONTH(in_date) AS month, 
+       YEAR(in_date) AS year,
+       SUM(in_amount) AS total_expense FROM transection where tr_type = '1' and  exp_cat_id ='13' 
+        GROUP BY month, year 
+    ORDER BY year, month");
         $query->execute();
         $row = $query->fetchAll();
         return $row;

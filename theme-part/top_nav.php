@@ -7,7 +7,7 @@
             <li><a href="transection.php">New Transection</a></li>
 
             <li><a href="transfer.php">Account Transfer</a></li>
-            <li><a href="basic_report.php">basic Report</a></li>
+            <li><a href="cat_wise_report.php">basic Report</a></li>
             <!--            <li><a href="logout.php">Logout</a></li>-->
         </ul>
 
@@ -15,7 +15,7 @@
             <li><a href="transection.php">New Transection</a></li>
 
             <li><a href="transfer.php">Account Transfer</a></li>
-            <li><a href="basic_report.php">basic Report</a></li>
+            <li><a href="cat_wise_report.php">basic Report</a></li>
             <!--            <li><a href="logout.php">Logout</a></li>-->
 
         </ul>
