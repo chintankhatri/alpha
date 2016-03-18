@@ -15,7 +15,7 @@ class database {
     private $password = '';
     private $host = 'localhost';
     private $dbname = 'alpha';
-    public  $db;
+    public $db;
 
     /**
      * 
@@ -84,7 +84,7 @@ class accounts extends database {
     INNER JOIN `alpha`.`expense_category` 
         ON (`transection`.`exp_cat_id` = `expense_category`.`exp_cat_id`)
     INNER JOIN `alpha`.`accounts` 
-        ON (`transection`.`ac_id` = `accounts`.`ac_id`) where `transection`.`ac_id`   = $ac_id ");
+        ON (`transection`.`ac_id` = `accounts`.`ac_id`) where (MONTH(`transection`.`in_date`) = (MONTH(NOW()) ) AND YEAR(`transection`.`in_date`) = YEAR(NOW())) and`transection`.`ac_id`   = $ac_id ");
         $query->execute();
         $row = $query->fetchAll();
         return $row;
@@ -166,8 +166,8 @@ class reports extends database {
         $row = $query->fetchAll();
         return $row;
     }
-    
-       public function show_expense_month_wise() {
+
+    public function show_expense_month_wise() {
         $query = $this->db->prepare("SELECT  exp_cat_id,MONTH(in_date) AS month, 
        YEAR(in_date) AS year,
        SUM(in_amount) AS total_expense FROM transection where tr_type = '0' and  exp_cat_id !='15' 
