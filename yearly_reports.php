@@ -54,50 +54,108 @@ $db = new reports();
 
                             <li class="tab col s3"><a  href="#test2">Income Report</a></li>
                             <li class="tab col s3 "><a href="#test3">Expense Report</a></li>
-
+                            <li class="tab col s3"><a  href="#test1">Assets Report</a></li>
                         </ul>
                     </div>
-
-                    <div id="test2" class="col s12">
+                    <div id="test1" class="col s12">
                         <script type="text/javascript">
                                     var chart1;
                                     $(function () {
-                                    var newh = $("#box2").height();
+                                    var newh = $("#box1").height();
                                             $(window).resize(function () {
 
-                                    newh = $("#box2").height();
+                                    newh = $("#box1").height();
                                             chart1.redraw();
                                             chart1.reflow();
                                     });
                                             chart1 = new Highcharts.Chart({
                                             chart: {
-                                            renderTo: 'container2',
-                                                    type: 'line'
+                                            renderTo: 'container1',
+                                                    type: 'area'
                                             },
                                                     title: {
-                                                    text: 'Monthly Income chart'
+                                                    text: 'Assets chart'
                                                     },
                                                     subtitle: {
                                                     text: ''
                                                     },
+                                                    
+                                                    
+                                                    
                                                     xAxis: {
-                                                    categories: [ 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                                                    categories: [ 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
                                                     },
-                                                    yAxis: {
-                                                    title: {
-                                                    text: 'Monthly Income'
-                                                    }
+                                                    credits: {
+                                                    enabled: false
                                                     },
-                                                    plotOptions: {
-                                                    line: {
-                                                    dataLabels: {
-                                                    enabled: true
-                                                    },
-                                                            enableMouseTracking: false
-                                                    }
-                                                    },
-                                                    series: [{
-                                                    name: 'Income',
+                                                    series:  [{
+                                                    name: 'Assets',
+                                                            data: [
+                                                                <?php  
+                                                                $report_data3 = $db->assets_count();
+                                                                foreach ($report_data3 as $data){
+                                                                    echo $data[3].',';
+                                                                }
+                                                                ?>
+                                                            
+                                                    ]}, {
+                                                    name: 'Liabilitys',
+                                                            data: [
+                                                                      <?php  
+                                                              
+                                                                foreach ($report_data3 as $data){
+                                                                    echo $data[2].',';
+                                                                }
+                                                                ?>
+                                                            ]
+                                                    }]
+                                            });
+                                    });</script>
+                        <div id="box1">
+                            <div id="container1"></div>
+                        </div>     
+                    </div>
+                </div>
+                <div id="test2" class="col s12">
+                    <script type="text/javascript">
+                                var chart1;
+                                $(function () {
+                                var newh = $("#box2").height();
+                                        $(window).resize(function () {
+
+                                newh = $("#box2").height();
+                                        chart1.redraw();
+                                        chart1.reflow();
+                                });
+                                        chart1 = new Highcharts.Chart({
+                                        chart: {
+                                        renderTo: 'container2',
+                                                type: 'line'
+                                        },
+                                                title: {
+                                                text: 'Monthly Income chart'
+                                                },
+                                                subtitle: {
+                                                text: ''
+                                                },
+                                                xAxis: {
+                                                categories: [ 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                                                },
+                                                yAxis: {
+                                                title: {
+                                                text: 'Monthly Income'
+                                                }
+                                                },
+                                                plotOptions: {
+                                                line: {
+                                                dataLabels: {
+                                                enabled: true
+                                                },
+                                                        enableMouseTracking: false
+                                                }
+                                                },
+                                                series: [{
+                                                name: 'Income',
 <?php
 $report_data = $db->show_income_month_wise();
 echo'data:[';
@@ -106,13 +164,13 @@ foreach ($report_data as $data) {
 }
 echo ']';
 ?>                        }]
-                                            });
-                                    });                        </script>
-                        <div id="box2">
-                            <div id="container2"></div>
-                        </div>     
-                    </div>
-                    <div id="test3" class="col s12">
+                                        });
+                                });</script>
+                    <div id="box2">
+                        <div id="container2"></div>
+                    </div>     
+                </div>
+                <div id="test3" class="col s12">
                     <script type="text/javascript">
                                 var chart1;
                                 $(function () {
@@ -161,43 +219,43 @@ foreach ($report_data1 as $data) {
 echo ']';
 ?>                        }]
                                         });
-                                });                    </script>
+                                });</script>
                     <div id="box3">
                         <div id="container3"></div>
                     </div>     
-</div>
                 </div>
             </div>
-
         </div>
 
+    </div>
 
-        <footer class="page-footer orange">
 
-<?php
-include_once './theme-part/footer_part.php';
-?>
-        </footer>
+    <footer class="page-footer orange">
 
-    </body>
-    <!--  Scripts-->
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="js/materialize.js"></script>
-    <script src="js/init.js"></script>
+        <?php
+        include_once './theme-part/footer_part.php';
+        ?>
+    </footer>
+
+</body>
+<!--  Scripts-->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="js/materialize.js"></script>
+<script src="js/init.js"></script>
 <?php ?>
 
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/highcharts-3d.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-3d.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
 
 
-    <script>
+<script>
 
                                 $(document).ready(function () {
                         $('ul.tabs').tabs('select_tab', 'tab_id');
                         });
 
-    </script>   
+</script>   
 
 
 </html>

@@ -11,11 +11,11 @@ project:alpha
  */
 class database {
 
-    private $username = 'root';
+ private $username = 'root';
     private $password = '';
     private $host = 'localhost';
     private $dbname = 'alpha';
-    public $db;
+    public  $db;
 
     /**
      * 
@@ -173,6 +173,13 @@ class reports extends database {
        SUM(in_amount) AS total_expense FROM transection where tr_type = '0' and  exp_cat_id !='15' 
         GROUP BY month, year 
     ORDER BY year, month");
+        $query->execute();
+        $row = $query->fetchAll();
+        return $row;
+    }
+    
+    public function assets_count() {
+              $query = $this->db->prepare("select * from assets");
         $query->execute();
         $row = $query->fetchAll();
         return $row;
